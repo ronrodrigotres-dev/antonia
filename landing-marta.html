@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Treasures of Marta – Supahpure Studios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: rgba(10,10,10,0.9);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            border-bottom: 1px solid #222;
+        }
+
+        header .logo img {
+            height: 50px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #ff6b35;
+        }
+
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #1a0a00, #2a1500, #1a0800);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px;
+        }
+
+        .hero h1 {
+            font-size: 60px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            color: #ff6b35;
+            margin-bottom: 20px;
+            text-shadow: 0 0 30px rgba(255,107,53,0.5);
+        }
+
+        .hero p {
+            font-size: 20px;
+            color: #cccccc;
+            max-width: 700px;
+            line-height: 1.7;
+            margin-bottom: 40px;
+        }
+
+        .hero .badge {
+            background-color: #ff6b35;
+            color: #fff;
+            padding: 8px 24px;
+            border-radius: 4px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: bold;
+        }
+
+        .about {
+            padding: 100px 60px;
+            background-color: #100800;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .about img {
+            width: 100%;
+            border-radius: 12px;
+            border: 2px solid #ff6b35;
+        }
+
+        .about h2 {
+            font-size: 40px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        .about p {
+            font-size: 16px;
+            color: #aaaaaa;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .video-section {
+            padding: 80px 60px;
+            background-color: #0a0a0a;
+            text-align: center;
+        }
+
+        .video-section h2 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: #ff6b35;
+            margin-bottom: 40px;
+        }
+
+        .video-section video {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 8px;
+            border: 2px solid #ff6b35;
+        }
+
+        footer {
+            padding: 40px 60px;
+            background-color: #0a0a0a;
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+            border-top: 1px solid #222;
+        }
+
+        footer a {
+            color: #ff6b35;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="assets/images/logo.png" alt="Supahpure Studios"></a>
+        </div>
+        <nav>
+            <a href="index.html">Inicio</a>
+            <a href="index.html#proyectos">Proyectos</a>
+            <a href="index.html#equipo">Equipo</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>The Treasures of Marta</h1>
+        <p>Una aventura emotiva sobre una joven exploradora que descubre que el verdadero tesoro siempre estuvo más cerca de lo que imaginaba.</p>
+        <span class="badge">Disponible Ahora</span>
+    </section>
+
+    <div class="about">
+        <img src="assets/images/treasures-marta.png" alt="The Treasures of Marta">
+        <div>
+            <h2>Sobre el Proyecto</h2>
+            <p>The Treasures of Marta es un cortometraje animado que sigue a Marta, una niña curiosa y valiente que emprende una aventura para encontrar los legendarios tesoros escondidos por su abuela.</p>
+            <p>A lo largo de su viaje, Marta descubrirá que los verdaderos tesoros son los recuerdos, las amistades y el amor que nos dan forma como personas.</p>
+        </div>
+    </div>
+
+    <section class="video-section">
+        <h2>Trailer</h2>
+        <video controls>
+            <source src="assets/images/marta-video.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Supahpure Studios. <a href="index.html">Volver al inicio</a></p>
+    </footer>
+
+</body>
+</html>
