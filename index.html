@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supahpure Studios</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #0a0a0a;
+            color: #ffffff;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 60px;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #222;
+        }
+
+        header .logo img {
+            height: 60px;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 30px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav a:hover {
+            color: #f0a500;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 60px;
+            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
+            min-height: 60vh;
+        }
+
+        .hero h1 {
+            font-size: 64px;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #aaaaaa;
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .team {
+            padding: 80px 60px;
+            background-color: #111;
+        }
+
+        .team h2 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .team-grid {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .team-member {
+            text-align: center;
+            width: 180px;
+        }
+
+        .team-member img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #f0a500;
+            margin-bottom: 15px;
+        }
+
+        .team-member h3 {
+            font-size: 16px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .team-member p {
+            font-size: 13px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .projects {
+            padding: 80px 60px;
+            background-color: #0a0a0a;
+        }
+
+        .projects h2 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .project-card .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+            padding: 20px;
+        }
+
+        .project-card .overlay h3 {
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .project-card .overlay a {
+            color: #f0a500;
+            text-decoration: none;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .reel {
+            padding: 80px 60px;
+            background-color: #111;
+            text-align: center;
+        }
+
+        .reel h2 {
+            font-size: 36px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        .reel video {
+            width: 100%;
+            max-width: 900px;
+            border-radius: 8px;
+        }
+
+        footer {
+            padding: 40px 60px;
+            background-color: #0a0a0a;
+            text-align: center;
+            color: #555;
+            font-size: 13px;
+            border-top: 1px solid #222;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo.png" alt="Supahpure Studios">
+        </div>
+        <nav>
+            <a href="#proyectos">Proyectos</a>
+            <a href="#equipo">Equipo</a>
+            <a href="#reel">Reel</a>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>Supahpure Studios</h1>
+        <p>Estudio independiente de animación. Creamos mundos, personajes e historias únicas con pasión y creatividad.</p>
+    </section>
+
+    <section class="projects" id="proyectos">
+        <h2>Proyectos</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <img src="assets/images/treasures-marta.png" alt="The Treasures of Marta">
+                <div class="overlay">
+                    <h3>The Treasures of Marta</h3>
+                    <a href="landing-marta.html">Ver más →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/tu-rata-ideal.jpg" alt="Tu Rata Ideal">
+                <div class="overlay">
+                    <h3>Tu Rata Ideal</h3>
+                    <a href="landing-rata.html">Ver más →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/tales-eldoria.jpg" alt="Tales of Eldoria">
+                <div class="overlay">
+                    <h3>Tales of Eldoria</h3>
+                    <a href="landing-eldoria.html">Ver más →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <img src="assets/images/project-escape.jpg" alt="Project Escape">
+                <div class="overlay">
+                    <h3>Project Escape</h3>
+                    <a href="landing-escape.html">Ver más →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="team" id="equipo">
+        <h2>Equipo</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="assets/images/antonia.jpg" alt="Antonia">
+                <h3>Antonia</h3>
+                <p>Dirección Creativa</p>
+            </div>
+            <div class="team-member">
+                <img src="assets/images/cristobal.jpg" alt="Cristóbal">
+                <h3>Cristóbal</h3>
+                <p>Animación</p>
+            </div>
+            <div class="team-member">
+                <img src="assets/images/lisette.jpg" alt="Lisette">
+                <h3>Lisette</h3>
+                <p>Diseño</p>
+            </div>
+            <div class="team-member">
+                <img src="assets/images/rodrigo.jpg" alt="Rodrigo">
+                <h3>Rodrigo</h3>
+                <p>Producción</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="reel" id="reel">
+        <h2>Portfolio Reel</h2>
+        <video controls>
+            <source src="assets/images/portafolio.mp4" type="video/mp4">
+            Tu navegador no soporta la reproducción de video.
+        </video>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Supahpure Studios. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
