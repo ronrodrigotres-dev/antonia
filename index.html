@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Supahpure Studios</title>
+    <link rel="preload" as="video" href="assets/imagenes/hero-video.mp4" type="video/mp4">
     <style>
         * {
             margin: 0;
@@ -229,28 +230,28 @@
         <h2>Proyectos</h2>
         <div class="projects-grid">
             <div class="project-card">
-                <img src="assets/imagenes/treasures-marta.jpg" alt="The Treasures of Marta">
+                <img src="assets/imagenes/treasures-marta.jpg" alt="The Treasures of Marta" loading="lazy">
                 <div class="overlay">
                     <h3>The Treasures of Marta</h3>
                     <a href="landing-marta.html">Ver más →</a>
                 </div>
             </div>
             <div class="project-card">
-                <img src="assets/imagenes/tu-rata-ideal.jpg" alt="Tu Rata Ideal">
+                <img src="assets/imagenes/tu-rata-ideal.jpg" alt="Tu Rata Ideal" loading="lazy">
                 <div class="overlay">
                     <h3>Tu Rata Ideal</h3>
                     <a href="landing-rata.html">Ver más →</a>
                 </div>
             </div>
             <div class="project-card">
-                <img src="assets/imagenes/tales-eldoria.jpg" alt="Tales of Eldoria">
+                <img src="assets/imagenes/tales-eldoria.jpg" alt="Tales of Eldoria" loading="lazy">
                 <div class="overlay">
                     <h3>Tales of Eldoria</h3>
                     <a href="landing-eldoria.html">Ver más →</a>
                 </div>
             </div>
             <div class="project-card">
-                <img src="assets/imagenes/project-escape.jpg" alt="Project Escape">
+                <img src="assets/imagenes/project-escape.jpg" alt="Project Escape" loading="lazy">
                 <div class="overlay">
                     <h3>Project Escape</h3>
                     <a href="landing-escape.html">Ver más →</a>
@@ -287,7 +288,7 @@
 
     <section class="reel" id="reel">
         <h2>Portfolio Reel</h2>
-        <video controls>
+        <video controls muted loop playsinline autoplay>
             <source src="assets/imagenes/portafolio.mp4" type="video/mp4">
             Tu navegador no soporta la reproducción de video.
         </video>
