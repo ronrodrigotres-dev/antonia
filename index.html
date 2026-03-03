@@ -3,300 +3,668 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supahpure Studios</title>
-    <link rel="preload" as="video" href="assets/imagenes/hero-video.mp4" type="video/mp4">
+    <title>Supahpure Studios | Animación Digital y Desarrollo Visual</title>
+    <meta name="description" content="Supahpure Studios es un estudio independiente de animación digital y desarrollo visual. Creamos universos originales, proyectos audiovisuales y experiencias narrativas.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Gochi+Hand&display=swap" rel="stylesheet">
+
+    <link rel="preload" as="video" href="./recursos/imagenes/hero-video.mp4" type="video/mp4">
+
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --white: #ffffff;
+            --black: #0a0a0a;
+            --purple-brand: #6104ff;
+            --purple-bg: #3b0764;
         }
 
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #0a0a0a;
-            color: #ffffff;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', sans-serif; background-color: var(--black); color: var(--white); overflow-x: hidden; }
 
+        /* Header */
         header {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            padding: 1.2rem 5vw;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 60px;
-            background-color: #0a0a0a;
-            border-bottom: 1px solid #222;
+            z-index: 1000;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.7), transparent);
         }
 
-        header .logo img {
-            height: 60px;
-        }
-
-        nav a {
-            color: #ffffff;
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
             text-decoration: none;
-            margin-left: 30px;
-            font-size: 14px;
+            color: var(--white);
+        }
+        .raton-img {
+            width: 180px;
+            height: auto;
+            object-fit: contain;
+        }
+        .texto-logo {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 2rem;
+            line-height: 0.9;
+        }
+
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 0.95rem;
             text-transform: uppercase;
             letter-spacing: 1px;
+            transition: color 0.3s ease;
         }
-
         nav a:hover {
-            color: #f0a500;
+            color: var(--purple-brand);
         }
 
+        /* Hero Section */
         .hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            background-color: #000;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            z-index: 0;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.3);
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            padding: 100px 60px;
-            background: linear-gradient(135deg, #0a0a0a, #1a1a2e);
-            min-height: 60vh;
+            padding: 2rem;
         }
 
-        .hero h1 {
-            font-size: 64px;
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            margin-bottom: 20px;
+        .hero-content h1 {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 5rem;
+            margin-bottom: 1rem;
+            text-shadow: 4px 4px 0px rgba(97, 4, 255, 0.5);
         }
 
-        .hero p {
-            font-size: 18px;
-            color: #aaaaaa;
+        .hero-content p {
+            font-size: 1.3rem;
             max-width: 600px;
+            margin: 0 auto 2rem;
             line-height: 1.6;
         }
 
-        .team {
-            padding: 80px 60px;
-            background-color: #111;
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            animation: bounce 2s infinite;
         }
 
-        .team h2 {
-            font-size: 36px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 60px;
+        .scroll-indicator span {
+            display: block;
+            width: 30px;
+            height: 50px;
+            border: 2px solid white;
+            border-radius: 20px;
+            position: relative;
         }
 
-        .team-grid {
+        .scroll-indicator span::before {
+            content: '';
+            position: absolute;
+            top: 8px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 6px;
+            height: 6px;
+            background: white;
+            border-radius: 50%;
+            animation: scroll 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        @keyframes scroll {
+            0% { opacity: 1; top: 8px; }
+            100% { opacity: 0; top: 25px; }
+        }
+
+        /* Projects Section */
+        .project-row {
             display: flex;
-            justify-content: center;
-            gap: 40px;
+            min-height: 100vh;
+            align-items: center;
             flex-wrap: wrap;
         }
-
-        .team-member {
-            text-align: center;
-            width: 180px;
+        .project-row.reverse { flex-direction: row-reverse; }
+        .project-image, .project-info { flex: 1; min-width: 50%; padding: 5% 6%; }
+        .project-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 25px 25px 0px rgba(0,0,0,0.3);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+        .project-image img:hover {
+            transform: translateY(-10px);
+            box-shadow: 30px 30px 0px rgba(0,0,0,0.4);
+        }
+        .project-info h2 {
+            font-weight: 800;
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+        .project-info .subtitle {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+        }
+        .project-info p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
         }
 
-        .team-member img {
-            width: 140px;
-            height: 140px;
-            border-radius: 50%;
+        .btn-project {
+            display: inline-block;
+            padding: 15px 35px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1rem;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.4s ease;
+            border: 2px solid white;
+            margin-top: 10px;
+        }
+
+        .btn-marta { color: white; background: transparent; }
+        .btn-marta:hover { background: white; color: #6b21a8; transform: scale(1.05); }
+
+        .btn-rata { color: white; background: transparent; }
+        .btn-rata:hover { background: white; color: #ec4899; transform: scale(1.05); }
+
+        .btn-eldoria { color: white; background: transparent; }
+        .btn-eldoria:hover { background: white; color: #4A3FD6; transform: scale(1.05); }
+
+        .btn-escape { color: #000; border-color: #000; background: transparent; }
+        .btn-escape:hover { background: #000; color: #a3e635; transform: scale(1.05); }
+
+        /* Video Section for Marta */
+        .marta-video-section {
+            position: relative;
+            overflow: hidden;
+        }
+        .marta-video-section .project-image {
+            position: relative;
+            overflow: hidden;
+            padding: 0;
+        }
+        .marta-video-section .project-video {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
             object-fit: cover;
-            border: 3px solid #f0a500;
-            margin-bottom: 15px;
         }
 
+        /* Portfolio Video Section */
+        .portfolio-video-section {
+            width: 100%;
+            background: #000;
+        }
+        .portfolio-video {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Team Section */
+        .team-section {
+            background-color: #111;
+            padding: 100px 8%;
+            text-align: center;
+        }
+        .team-title {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .team-description {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .team-member {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 16px;
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+            background: rgba(97, 4, 255, 0.1);
+        }
+        .team-member img {
+            width: 100%;
+            max-width: 200px;
+            border-radius: 50%;
+            border: 4px solid var(--purple-brand);
+            margin-bottom: 20px;
+            aspect-ratio: 1;
+            object-fit: cover;
+        }
         .team-member h3 {
-            font-size: 16px;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        .team-member p {
+            color: var(--purple-brand);
+            font-weight: 700;
+            font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 1px;
         }
 
-        .team-member p {
-            font-size: 13px;
-            color: #888;
-            margin-top: 5px;
-        }
-
-        .projects {
-            padding: 80px 60px;
-            background-color: #0a0a0a;
-        }
-
-        .projects h2 {
-            font-size: 36px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        /* Services Section */
+        .services-section {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            padding: 100px 8%;
             text-align: center;
-            margin-bottom: 60px;
         }
-
-        .projects-grid {
+        .services-title {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+        .services-description {
+            max-width: 700px;
+            margin: 0 auto 60px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #ccc;
+        }
+        .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 30px;
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
         }
-
-        .project-card {
-            position: relative;
-            overflow: hidden;
-            border-radius: 8px;
-            cursor: pointer;
+        .service-card {
+            background: rgba(255,255,255,0.05);
+            padding: 40px 30px;
+            border-radius: 16px;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+        .service-card:hover {
+            border-color: var(--purple-brand);
+            transform: translateY(-5px);
+        }
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--purple-brand);
+        }
+        .service-card p {
+            color: #aaa;
+            line-height: 1.6;
         }
 
-        .project-card img {
-            width: 100%;
-            height: 300px;
-            object-fit: cover;
-            display: block;
-            transition: transform 0.3s ease;
-        }
-
-        .project-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .project-card .overlay {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0,0,0,0.85));
-            padding: 20px;
-        }
-
-        .project-card .overlay h3 {
-            font-size: 20px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        .project-card .overlay a {
-            color: #f0a500;
-            text-decoration: none;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .reel {
-            padding: 80px 60px;
-            background-color: #111;
+        /* Contact Section */
+        .contact-section {
+            background: linear-gradient(135deg, var(--purple-bg) 0%, #1a0b2e 100%);
+            padding: 100px 5%;
             text-align: center;
         }
-
-        .reel h2 {
-            font-size: 36px;
-            text-transform: uppercase;
-            letter-spacing: 3px;
+        .contact-title {
+            font-family: 'Gochi Hand', cursive;
+            font-size: 4.5rem;
+            margin-bottom: 20px;
+        }
+        .contact-subtitle {
+            font-size: 1.2rem;
             margin-bottom: 40px;
+            color: #ccc;
+        }
+        .email-link {
+            color: white;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: inline-block;
+            padding: 15px 40px;
+            border: 2px solid white;
+            border-radius: 50px;
+            margin-bottom: 50px;
+            transition: all 0.3s ease;
+        }
+        .email-link:hover {
+            background: white;
+            color: var(--purple-bg);
         }
 
-        .reel video {
-            width: 100%;
-            max-width: 900px;
-            border-radius: 8px;
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+        .social-icons a:hover {
+            background: var(--purple-brand);
+            transform: scale(1.1) rotate(-5deg);
+        }
+        .social-icons img {
+            width: 35px;
+            height: 35px;
+            filter: brightness(0) invert(1);
         }
 
+        /* Footer */
         footer {
-            padding: 40px 60px;
-            background-color: #0a0a0a;
+            background: #0a0a0a;
+            padding: 30px 5%;
             text-align: center;
-            color: #555;
-            font-size: 13px;
             border-top: 1px solid #222;
+        }
+        footer p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+            }
+            nav ul {
+                gap: 1rem;
+            }
+            nav a {
+                font-size: 0.8rem;
+            }
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            .project-row, .project-row.reverse {
+                flex-direction: column;
+            }
+            .project-image, .project-info {
+                min-width: 100%;
+                padding: 8% 5%;
+            }
+            .project-info h2 {
+                font-size: 2.5rem;
+            }
+            .team-title, .services-title, .contact-title {
+                font-size: 2.5rem;
+            }
         }
     </style>
 </head>
+
 <body>
 
-    <header>
-        <div class="logo">
-            <img src="assets/imagenes/logo.jpg" alt="Supahpure Studios">
-        </div>
-        <nav>
-            <a href="#proyectos">Proyectos</a>
-            <a href="#equipo">Equipo</a>
-            <a href="#reel">Reel</a>
-        </nav>
-    </header>
+<header>
+    <a href="#home" class="logo-container">
+        <img src="./recursos/imagenes/logo.jpg" alt="Supahpure Studios" class="raton-img" loading="lazy">
+    </a>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#team">Our Team</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
 
-    <section class="hero">
+<section class="hero" id="home">
+    <video class="hero-video" autoplay muted loop playsinline preload="metadata">
+        <source src="./recursos/imagenes/hero-video.mp4" type="video/mp4">
+    </video>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
         <h1>Supahpure Studios</h1>
-        <p>Estudio independiente de animación. Creamos mundos, personajes e historias únicas con pasión y creatividad.</p>
-    </section>
+        <p>Somos un estudio independiente de animación digital. Creamos universos originales, proyectos audiovisuales y experiencias narrativas que inspiran.</p>
+    </div>
+    <div class="scroll-indicator">
+        <span></span>
+    </div>
+</section>
 
-    <section class="projects" id="proyectos">
-        <h2>Proyectos</h2>
-        <div class="projects-grid">
-            <div class="project-card">
-                <img src="assets/imagenes/treasures-marta.jpg" alt="The Treasures of Marta" loading="lazy">
-                <div class="overlay">
-                    <h3>The Treasures of Marta</h3>
-                    <a href="landing-marta.html">Ver más →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="assets/imagenes/tu-rata-ideal.jpg" alt="Tu Rata Ideal" loading="lazy">
-                <div class="overlay">
-                    <h3>Tu Rata Ideal</h3>
-                    <a href="landing-rata.html">Ver más →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="assets/imagenes/tales-eldoria.jpg" alt="Tales of Eldoria" loading="lazy">
-                <div class="overlay">
-                    <h3>Tales of Eldoria</h3>
-                    <a href="landing-eldoria.html">Ver más →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <img src="assets/imagenes/project-escape.jpg" alt="Project Escape" loading="lazy">
-                <div class="overlay">
-                    <h3>Project Escape</h3>
-                    <a href="landing-escape.html">Ver más →</a>
-                </div>
-            </div>
+<section id="projects">
+    <article class="project-row marta-video-section" style="background-color: #6b21a8;">
+        <div class="project-image">
+            <video class="project-video" autoplay muted loop playsinline poster="./recursos/imagenes/treasures-marta.jpg">
+                <source src="./recursos/imagenes/marta-video.mp4" type="video/mp4">
+            </video>
         </div>
-    </section>
-
-    <section class="team" id="equipo">
-        <h2>Equipo</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="assets/imagenes/antonia.jpg" alt="Antonia">
-                <h3>Antonia</h3>
-                <p>Dirección Creativa</p>
-            </div>
-            <div class="team-member">
-                <img src="assets/imagenes/cristobal.jpg" alt="Cristóbal">
-                <h3>Cristóbal</h3>
-                <p>Animación</p>
-            </div>
-            <div class="team-member">
-                <img src="assets/imagenes/lisette.jpg" alt="Lisette">
-                <h3>Lisette</h3>
-                <p>Diseño</p>
-            </div>
-            <div class="team-member">
-                <img src="assets/imagenes/rodrigo.jpg" alt="Rodrigo">
-                <h3>Rodrigo</h3>
-                <p>Producción</p>
-            </div>
+        <div class="project-info">
+            <h2>THE TREASURES OF MARTA!</h2>
+            <p class="subtitle">An urban adventure of mystery and scout exploration</p>
+            <p>Join <strong>three young scouts</strong> guided by the legendary <em>Marta's Journal</em> as they set off on thrilling adventures to uncover hidden treasures buried beneath a modern city. As they explore forgotten places and face unexpected challenges, the series celebrates the true value of <strong>friendship, teamwork, and curiosity</strong>.</p>
+            <a href="landing-marta.html" class="btn-project btn-marta">Explore Project →</a>
         </div>
-    </section>
+    </article>
 
-    <section class="reel" id="reel">
-        <h2>Portfolio Reel</h2>
-        <video controls muted loop playsinline autoplay>
-            <source src="assets/imagenes/portafolio.mp4" type="video/mp4">
-            Tu navegador no soporta la reproducción de video.
-        </video>
-    </section>
+    <article class="project-row reverse" style="background-color: #ec4899;">
+        <div class="project-image">
+            <img src="./recursos/imagenes/tu-rata-ideal.jpg" alt="Tu Rata Ideal" loading="lazy">
+        </div>
+        <div class="project-info">
+            <h2>"TU RATA IDEAL"</h2>
+            <p class="subtitle">A quirky comedy visual novel</p>
+            <p><strong>"Tu Rata Ideal"</strong> is a quirky comedy-visual novel that parodies the genre itself. You'll meet a zany cast of characters with opportunities to interact and build unique friendships. Domestic street, snow, or however you like it—embark on <strong>wild adventures</strong> in the bustling city of Santiago, where nothing is quite as it seems.</p>
+            <a href="landing-rata.html" class="btn-project btn-rata">Explore Project →</a>
+        </div>
+    </article>
 
-    <footer>
-        <p>&copy; 2024 Supahpure Studios. Todos los derechos reservados.</p>
-    </footer>
+    <article class="project-row" style="background-color: #4A3FD6;">
+        <div class="project-image">
+            <img src="./recursos/imagenes/tales-eldoria.jpg" alt="Tales of Eldoria" loading="lazy">
+        </div>
+        <div class="project-info">
+            <h2>TALES OF ELDORIA</h2>
+            <p class="subtitle">A magical journey of destiny</p>
+            <p>In the <strong>magical realm of Eldoria</strong>, a group of gifted children uncovers an <strong>ancient prophecy</strong> of approaching darkness. Guided by a wise mentor, they embark on a quest through <strong>enchanted lands</strong>, facing mythical challenges to learn the true power of <strong>friendship and unity</strong>.</p>
+            <a href="landing-eldoria.html" class="btn-project btn-eldoria">Explore Project →</a>
+        </div>
+    </article>
+
+    <article class="project-row reverse" style="background-color: #a3e635; color: #000;">
+        <div class="project-image">
+            <img src="./recursos/imagenes/project-escape.jpg" alt="Project Escape" loading="lazy">
+        </div>
+        <div class="project-info">
+            <h2 style="color: #000;">PROJECT ESCAPE</h2>
+            <p class="subtitle" style="color: #333;">An urban short film of art and rebellion</p>
+            <p style="color: #000;">Set on the vibrant <strong>urban streets</strong>, follow an intrepid girl as she escapes the police on her <strong>skateboard</strong>, leaving behind a trail of ephemeral art. This short film captures the essence of <strong>freedom, creativity, and rebellion</strong> in every trick and stroke, blending dynamic action with artistic expression.</p>
+            <a href="landing-escape.html" class="btn-project btn-escape">Explore Project →</a>
+        </div>
+    </article>
+</section>
+
+<section class="portfolio-video-section">
+    <video class="portfolio-video" autoplay muted loop playsinline>
+        <source src="./recursos/imagenes/portafolio.mp4" type="video/mp4">
+    </video>
+</section>
+
+<section id="team" class="team-section">
+    <h2 class="team-title">Meet the Team!</h2>
+    <p class="team-description">Our team is a passionate group of animators, writers, and creative minds dedicated to storytelling. We specialize in crafting original animated series that bring unique characters and captivating worlds to life. With a deep focus on cultural representation and innovative narratives, we aim to create stories that resonate with audiences of all ages.</p>
+    <div class="team-grid">
+        <div class="team-member">
+            <img src="./recursos/imagenes/antonia.jpg" alt="Antonia Venegas Gonzalez" loading="lazy">
+            <h3>Antonia Venegas Gonzalez</h3>
+            <p>Director & Founder</p>
+        </div>
+        <div class="team-member">
+            <img src="./recursos/imagenes/cristobal.jpg" alt="Cristobal Rojas Labra" loading="lazy">
+            <h3>Cristobal Rojas Labra</h3>
+            <p>Music & Sound Design</p>
+        </div>
+        <div class="team-member">
+            <img src="./recursos/imagenes/lisette.jpg" alt="Lisette Kamann Beuchat" loading="lazy">
+            <h3>Lisette Kamann Beuchat</h3>
+            <p>Screenwriter</p>
+        </div>
+        <div class="team-member">
+            <img src="./recursos/imagenes/rodrigo.jpg" alt="Rodrigo Venegas Vargas" loading="lazy">
+            <h3>Rodrigo Venegas Vargas</h3>
+            <p>General Producer</p>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services-section">
+    <h2 class="services-title">Our Services!</h2>
+    <p class="services-description">We are an animation studio offering professional services in character design, backgrounds, animatics, storyboards, and scriptwriting! Let us bring your ideas to life with creativity and precision.</p>
+    <div class="services-grid">
+        <div class="service-card">
+            <h3>Character Design</h3>
+            <p>Creating unique and memorable characters that bring your stories to life with personality and style.</p>
+        </div>
+        <div class="service-card">
+            <h3>Backgrounds</h3>
+            <p>Beautifully crafted environments and worlds that set the perfect stage for your narratives.</p>
+        </div>
+        <div class="service-card">
+            <h3>2D Animation</h3>
+            <p>High-quality 2D animation that captures movement, emotion, and storytelling excellence.</p>
+        </div>
+        <div class="service-card">
+            <h3>Storyboards</h3>
+            <p>Visual planning and sequencing that maps out your project from concept to final production.</p>
+        </div>
+        <div class="service-card">
+            <h3>Scriptwriting</h3>
+            <p>Compelling narratives and dialogue that engage audiences and drive your story forward.</p>
+        </div>
+        <div class="service-card">
+            <h3>Animatics</h3>
+            <p>Pre-visualization that helps you see your project come together before full production.</p>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="contact-section">
+    <h2 class="contact-title">Contact Us!</h2>
+    <p class="contact-subtitle">Ready to bring your ideas to life? Let's create something amazing together.</p>
+    <a href="mailto:hello@supahpurestudios.com" class="email-link">hello@supahpurestudios.com</a>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/supahpure_studios/" target="_blank" aria-label="Instagram">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+        </a>
+        <a href="https://x.com/supahpurestudio" target="_blank" aria-label="Twitter">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/@SupahpureStudios-ry9gt" target="_blank" aria-label="YouTube">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
+        </a>
+        <a href="https://www.tiktok.com/@supahpure" target="_blank" aria-label="TikTok">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
+        </a>
+        <a href="https://www.facebook.com/supahpure" target="_blank" aria-label="Facebook">
+            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" viewBox="0 0 24 24" fill="white"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>&copy; 2026 Supahpure Studios. Todos los derechos reservados.</p>
+</footer>
+
+<script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    const header = document.querySelector('header');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 100) {
+            header.style.background = 'rgba(0,0,0,0.9)';
+        } else {
+            header.style.background = 'linear-gradient(to bottom, rgba(0,0,0,0.7), transparent)';
+        }
+    });
+</script>
 
 </body>
 </html>
